@@ -1,4 +1,5 @@
 <script>
+    /*Optimized by chatGPT */
     export let tbl_data_cols;
     export let tbl_data_rows;
   
@@ -60,6 +61,7 @@
       content: " \2193";
     }
   
+    /*EOF Optimized by chatGPT */
     /* Add other styles as needed */
 
     thead{
