@@ -1,3 +1,11 @@
+/*
+npm create vite@latest
+cd my-awesome-sfa
+npm install
+npm install @sveltejs/vite-plugin-svelte unocss vite-plugin-singlefile
+npm run dev
+*/
+
 function doGet(e) {
   return HtmlService.createTemplateFromFile('index.html')
     .evaluate().setTitle('displayforscreen Window')
