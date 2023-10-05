@@ -9,23 +9,20 @@
         calcVal = calcVal.slice(0, -1);
     };
 
-
-
     const calculateEval = () => {
         let n = alt_eval().toString();
 
-       if( !isNaN(parseFloat(n)) && isFinite(alt_eval()) ) 
-        calcVal = alt_eval().toString();
-        else alert('Failed Calculation for expr:\n'+ calcVal )
+        if (!isNaN(parseFloat(n)) && isFinite(alt_eval()))
+            calcVal = alt_eval().toString();
+        else alert("Failed Calculation for expr:\n" + calcVal);
     };
-
 
     function calculateEvalKey() {
         let n = alt_eval().toString();
 
-if( !isNaN(parseFloat(n)) && isFinite(alt_eval()) ) 
- calcVal = alt_eval().toString();
- else alert('Failed Calculation for expr:\n'+ calcVal )
+        if (!isNaN(parseFloat(n)) && isFinite(alt_eval()))
+            calcVal = alt_eval().toString();
+        else alert("Failed Calculation for expr:\n" + calcVal);
     }
 
     const addToRes = (el) => {
@@ -83,61 +80,91 @@ if( !isNaN(parseFloat(n)) && isFinite(alt_eval()) )
         return numbers[0];
     }
 
-
     let push = "";
-	function onKeyDown(e) 
-    {
-		 switch(e.keyCode) {
-            case  8 : calcVal = calcVal.slice(0, -1) ; break;
-            case  13 :  calculateEvalKey() ; break;
-            case  187 : calculateEvalKey()  ; break;
-            
-            case  46 :  calcVal = ""  ; break;
+    function onKeyDown(e) {
+        switch (e.keyCode) {
+            case 8:
+                calcVal = calcVal.slice(0, -1);
+                break;
 
-            case  110 : calcVal +='.'  ; break;
-            case  190 : calcVal +='.'  ; break;
+            case 13:
+                calculateEvalKey();
+                break;
+            case 187:
+                calculateEvalKey();
+                break;
+            case 46:
+                calcVal = "";
+                break;
+            case 110:
+                calcVal += ".";
+                break;
+            case 111:
+                calcVal += "/";
+                break;
+            case 106:
+                calcVal += "*";
+                break;
+            case 109:
+                calcVal += "-";
+                break;
+            case 107:
+                calcVal += "+";
+                break;
+            case 96:
+                calcVal += "0";
+                break;
+            case 97:
+                calcVal += "1";
+                break;
+            case 98:
+                calcVal += "2";
+                break;
+            case 99:
+                calcVal += "3";
+                break;
+            case 100:
+                calcVal += "4";
+                break;
+            case 101:
+                calcVal += "5";
+                break;
+            case 102:
+                calcVal += "6";
+                break;
+            case 103:
+                calcVal += "7";
+                break;
+            case 104:
+                calcVal += "8";
+                break;
+            case 105:
+                calcVal += "9";
+                break;
+            /*
+                case  189 : calcVal +='-'   ; break;
+                case  56 : calcVal +='*'   ; break;
+                case  191 : calcVal +='/'  ; break;
+                case  190 : calcVal +='.'  ; break;
+                case  48 :  calcVal +='0'  ; break;
+                case  49 :  calcVal +='1'  ; break;
+                case  50 :  calcVal +='2'  ; break;
+                case  51 :  calcVal +='3'  ; break;
+                case  52 :  calcVal +='4'  ; break;
+                case  53 :  calcVal +='5'  ; break;
+                case  54 :  calcVal +='6'  ; break;
+                case  55 :  calcVal +='7'  ; break;
+                case  56 :  calcVal +='8'  ; break;
+                case  57 :  calcVal +='9'  ; break;
+            */
 
-            case  111 : calcVal +='/'  ; break;
-            case  191 : calcVal +='/'  ; break;
-            
-            case  106 : calcVal +='*'   ; break;
-            case  56 : calcVal +='*'   ; break;
+            default:
+                push = "";
+                break;
+        }
 
-            case  109 : calcVal +='-'   ; break;
-            case  189 : calcVal +='-'   ; break;
-            
-            case  107 : calcVal +='+'  ; break;
-
-            case  96 :  calcVal +='0'  ; break;
-            case  97 :  calcVal +='1'  ; break;
-            case  98 :  calcVal +='2'  ; break;
-            case  99 :  calcVal +='3'  ; break;
-            case  100 :  calcVal +='4'  ; break;
-            case  101 :  calcVal +='5'  ; break;
-            case  102 :  calcVal +='6'  ; break;
-            case  103 :  calcVal +='7'  ; break;
-            case  104 :  calcVal +='8'  ; break;
-            case  105 :  calcVal +='9'  ; break;
-            case  48 :  calcVal +='0'  ; break;
-            case  49 :  calcVal +='1'  ; break;
-            case  50 :  calcVal +='2'  ; break;
-            case  51 :  calcVal +='3'  ; break;
-            case  52 :  calcVal +='4'  ; break;
-            case  53 :  calcVal +='5'  ; break;
-            case  54 :  calcVal +='6'  ; break;
-            case  55 :  calcVal +='7'  ; break;
-            case  56 :  calcVal +='8'  ; break;
-            case  57 :  calcVal +='9'  ; break;
-
-
-
-
-			default:push = "" ;  break;
-		 }
-
-         console.log(e.keyCode + "?" + push)
-	}
-
+        console.log(e.keyCode + "?" + push);
+    }
 </script>
 
 <svelte:window on:keydown|preventDefault={onKeyDown} />
