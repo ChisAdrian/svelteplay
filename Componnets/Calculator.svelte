@@ -14,7 +14,7 @@
 
         if (!isNaN(parseFloat(n)) && isFinite(alt_eval()))
             calcVal = alt_eval().toString();
-        else alert("Failed Calculation for expr:\n" + calcVal);
+        else calcVal = "Failed:" + calcVal;
     };
 
     function calculateEvalKey() {
@@ -80,31 +80,37 @@
         return numbers[0];
     }
 
-    let nums = ['0','1','2','3','4','5','6','7','8','9' , '+','-','/','*', '.' ]
-    let doCalcs = ['Enter','=']
-    function onKeyDown(e)
-    {
-        if(nums.includes(e.key))
-        {
+    let nums = [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "+",
+        "-",
+        "/",
+        "*",
+        ".",
+    ];
+    let doCalcs = ["Enter", "="];
+    function onKeyDown(e) {
+        if (nums.includes(e.key)) {
             calcVal += e.key;
         }
-        if(doCalcs.includes(e.key))
-        {
+        if (doCalcs.includes(e.key)) {
             calculateEvalKey();
         }
 
-
-        if(e.key == 'Backspace') 
-        calcVal = calcVal.slice(0, -1);
-        console.log(e.key)
+        if (e.key == "Backspace") calcVal = calcVal.slice(0, -1);
     }
-      
-    
 </script>
 
-<svelte:window
-    on:keydown={onKeyDown}
-/>
+<svelte:window on:keydown={onKeyDown} />
 
 <div class="calculator">
     <div id="result">{calcVal}</div>
@@ -166,13 +172,14 @@
         height: 40px;
         font-size: 36px;
         text-align: left;
-
         margin: auto;
-
         margin-bottom: 20px;
         /*border: none;*/
         background-color: #f5f5f5;
         padding: 10px;
+     
+       
+        box-shadow:  3px 3px 3px  #999;
     }
 
     .row {
@@ -182,14 +189,15 @@
         margin-bottom: 10px;
     }
 
-    button {
+    button:not(.button_disabled) {
         width: calc(25% - 5px);
         height: 60px;
         font-size: 24px;
         border: none;
         border-radius: 5px;
         background-color: #fff;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+       /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);*/
+        box-shadow:  3px 3px 3px  #999;
     }
 
     button.oper {
@@ -198,6 +206,10 @@
 
     .button_disabled {
         background-color: transparent;
+        border: none;
+        width: calc(25% - 5px);
+        height: 60px;
+        font-size: 24px;
     }
 
     button.backspace {
