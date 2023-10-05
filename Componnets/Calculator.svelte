@@ -80,94 +80,31 @@
         return numbers[0];
     }
 
-    let push = "";
-    function onKeyDown(e) {
-        switch (e.keyCode) {
-            case 8:
-                calcVal = calcVal.slice(0, -1);
-                break;
-
-            case 13:
-                calculateEvalKey();
-                break;
-            case 187:
-                calculateEvalKey();
-                break;
-            case 46:
-                calcVal = "";
-                break;
-            case 110:
-                calcVal += ".";
-                break;
-            case 111:
-                calcVal += "/";
-                break;
-            case 106:
-                calcVal += "*";
-                break;
-            case 109:
-                calcVal += "-";
-                break;
-            case 107:
-                calcVal += "+";
-                break;
-            case 96:
-                calcVal += "0";
-                break;
-            case 97:
-                calcVal += "1";
-                break;
-            case 98:
-                calcVal += "2";
-                break;
-            case 99:
-                calcVal += "3";
-                break;
-            case 100:
-                calcVal += "4";
-                break;
-            case 101:
-                calcVal += "5";
-                break;
-            case 102:
-                calcVal += "6";
-                break;
-            case 103:
-                calcVal += "7";
-                break;
-            case 104:
-                calcVal += "8";
-                break;
-            case 105:
-                calcVal += "9";
-                break;
-            /*
-                case  189 : calcVal +='-'   ; break;
-                case  56 : calcVal +='*'   ; break;
-                case  191 : calcVal +='/'  ; break;
-                case  190 : calcVal +='.'  ; break;
-                case  48 :  calcVal +='0'  ; break;
-                case  49 :  calcVal +='1'  ; break;
-                case  50 :  calcVal +='2'  ; break;
-                case  51 :  calcVal +='3'  ; break;
-                case  52 :  calcVal +='4'  ; break;
-                case  53 :  calcVal +='5'  ; break;
-                case  54 :  calcVal +='6'  ; break;
-                case  55 :  calcVal +='7'  ; break;
-                case  56 :  calcVal +='8'  ; break;
-                case  57 :  calcVal +='9'  ; break;
-            */
-
-            default:
-                push = "";
-                break;
+    let nums = ['0','1','2','3','4','5','6','7','8','9' , '+','-','/','*', '.' ]
+    let doCalcs = ['Enter','=']
+    function onKeyDown(e)
+    {
+        if(nums.includes(e.key))
+        {
+            calcVal += e.key;
+        }
+        if(doCalcs.includes(e.key))
+        {
+            calculateEvalKey();
         }
 
-        console.log(e.keyCode + "?" + push);
+
+        if(e.key == 'Backspace') 
+        calcVal = calcVal.slice(0, -1);
+        console.log(e.key)
     }
+      
+    
 </script>
 
-<svelte:window on:keydown|preventDefault={onKeyDown} />
+<svelte:window
+    on:keydown={onKeyDown}
+/>
 
 <div class="calculator">
     <div id="result">{calcVal}</div>
