@@ -98,19 +98,23 @@
         ".",
     ];
     let doCalcs = ["Enter", "="];
+
     function onKeyDown(e) {
         if (nums.includes(e.key)) {
             calcVal += e.key;
         }
+
         if (doCalcs.includes(e.key)) {
             calculateEvalKey();
         }
 
         if (e.key == "Backspace") calcVal = calcVal.slice(0, -1);
+        if (e.key == "Delete") calcVal = "";
+
+        console.log(e.key);
     }
 
     import ButtonM from "./ButtonM.svelte";
-
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
@@ -118,47 +122,45 @@
 <div class="calculator">
     <div id="result">{calcVal}</div>
     <div class="row">
-      
-
-        <ButtonM action={clearRes} txt = "C"/>
-        <ButtonM action={backSpacRes} txt = "←"/>
-        <ButtonM actas="dsb"/>
-        <ButtonM action={addToRes} actas="op" txt = "/"/>
+        <ButtonM action={clearRes} txt="C" />
+        <ButtonM action={backSpacRes} txt="<<" />
+        <ButtonM actas="dsb" />
+        <ButtonM action={addToRes} actas="op" txt="/" />
     </div>
     <div class="row">
         {#each ["7", "8", "9", "*"] as btn, i}
             {#if i < 3}
-            <ButtonM action={addToRes}  txt = {btn}/>
+                <ButtonM action={addToRes} txt={btn} />
             {:else}
-            <ButtonM action={addToRes}  actas="op" txt = {btn}/>
+                <ButtonM action={addToRes} actas="op" txt={btn} />
             {/if}
         {/each}
     </div>
     <div class="row">
         {#each ["4", "5", "6", "-"] as btn, i}
             {#if i < 3}
-            <ButtonM action={addToRes}  txt = {btn}/>
+                <ButtonM action={addToRes} txt={btn} />
             {:else}
-            <ButtonM action={addToRes}  actas="op" txt = {btn}/>
+                <ButtonM action={addToRes} actas="op" txt={btn} />
             {/if}
         {/each}
     </div>
     <div class="row">
         {#each ["1", "2", "3", "+"] as btn, i}
             {#if i < 3}
-            <ButtonM action={addToRes}  txt = {btn}/>
+                <ButtonM action={addToRes} txt={btn} />
             {:else}
-            <ButtonM action={addToRes}  actas="op" txt = {btn}/>
+                <ButtonM action={addToRes} actas="op" txt={btn} />
             {/if}
         {/each}
     </div>
     <div class="row">
-        <ButtonM action={addToRes}  txt = ./>
-        <ButtonM action={addToRes}  txt = 0/>
-        <ButtonM actas="dsb"/>
-        <ButtonM action={calculateEval} actas ="prime" txt = "="/>
+        <ButtonM action={addToRes} txt="." />
+        <ButtonM action={addToRes} txt="0" />
+        <ButtonM actas="dsb" />
+        <ButtonM action={calculateEval} actas="prime" txt="=" />
     </div>
-</div>  
+</div>
 
 <style>
     /* Add your styles here if needed */
@@ -181,7 +183,7 @@
         margin-bottom: 20px;
         background-color: #f5f5f5;
         padding: 10px;
-        box-shadow:  3px 3px 3px  #999;
+        box-shadow: 3px 3px 3px #999;
     }
 
     .row {
@@ -190,5 +192,4 @@
         width: 100%;
         margin-bottom: 3%;
     }
-
 </style>
