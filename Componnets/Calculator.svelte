@@ -108,6 +108,9 @@
 
         if (e.key == "Backspace") calcVal = calcVal.slice(0, -1);
     }
+
+    import ButtonM from "./ButtonM.svelte";
+
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
@@ -115,45 +118,47 @@
 <div class="calculator">
     <div id="result">{calcVal}</div>
     <div class="row">
-        <button on:click={clearRes}>C</button>
-        <button on:click={backSpacRes}>←</button>
-        <button class="button_disabled" disabled />
-        <button class="oper" on:click={addToRes}>/</button>
+      
+
+        <ButtonM action={clearRes} txt = "C"/>
+        <ButtonM action={backSpacRes} txt = "←"/>
+        <ButtonM actas="dsb"/>
+        <ButtonM action={addToRes} actas="op" txt = "/"/>
     </div>
     <div class="row">
         {#each ["7", "8", "9", "*"] as btn, i}
             {#if i < 3}
-                <button on:click={addToRes}>{btn}</button>
+            <ButtonM action={addToRes}  txt = {btn}/>
             {:else}
-                <button class="oper" on:click={addToRes}>{btn}</button>
+            <ButtonM action={addToRes}  actas="op" txt = {btn}/>
             {/if}
         {/each}
     </div>
     <div class="row">
         {#each ["4", "5", "6", "-"] as btn, i}
             {#if i < 3}
-                <button on:click={addToRes}>{btn}</button>
+            <ButtonM action={addToRes}  txt = {btn}/>
             {:else}
-                <button class="oper" on:click={addToRes}>{btn}</button>
+            <ButtonM action={addToRes}  actas="op" txt = {btn}/>
             {/if}
         {/each}
     </div>
     <div class="row">
         {#each ["1", "2", "3", "+"] as btn, i}
             {#if i < 3}
-                <button on:click={addToRes}>{btn}</button>
+            <ButtonM action={addToRes}  txt = {btn}/>
             {:else}
-                <button class="oper" on:click={addToRes}>{btn}</button>
+            <ButtonM action={addToRes}  actas="op" txt = {btn}/>
             {/if}
         {/each}
     </div>
     <div class="row">
-        <button on:click={addToRes}>.</button>
-        <button on:click={addToRes}>0</button>
-        <button class="button_disabled" disabled />
-        <button class="backspace" on:click={calculateEval}>=</button>
+        <ButtonM action={addToRes}  txt = ./>
+        <ButtonM action={addToRes}  txt = 0/>
+        <ButtonM actas="dsb"/>
+        <ButtonM action={calculateEval} actas ="prime" txt = "="/>
     </div>
-</div>
+</div>  
 
 <style>
     /* Add your styles here if needed */
@@ -174,11 +179,8 @@
         text-align: left;
         margin: auto;
         margin-bottom: 20px;
-        /*border: none;*/
         background-color: #f5f5f5;
         padding: 10px;
-     
-       
         box-shadow:  3px 3px 3px  #999;
     }
 
@@ -186,34 +188,7 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 3%;
     }
 
-    button:not(.button_disabled) {
-        width: calc(25% - 5px);
-        height: 60px;
-        font-size: 24px;
-        border: none;
-        border-radius: 5px;
-        background-color: #fff;
-       /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);*/
-        box-shadow:  3px 3px 3px  #999;
-    }
-
-    button.oper {
-        background-color: #c6cd47;
-    }
-
-    .button_disabled {
-        background-color: transparent;
-        border: none;
-        width: calc(25% - 5px);
-        height: 60px;
-        font-size: 24px;
-    }
-
-    button.backspace {
-        background-color: #f0ad4e;
-        color: #fff;
-    }
 </style>
